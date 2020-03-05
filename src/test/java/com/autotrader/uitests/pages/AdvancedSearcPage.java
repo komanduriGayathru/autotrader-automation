@@ -1,6 +1,7 @@
 package com.autotrader.uitests.pages;
 
 import com.autotrader.uitests.genericactions.BrowserActions;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -45,6 +46,6 @@ public class AdvancedSearcPage extends BrowserActions {
     }
 
     public void validateSearchResults(){
-        System.out.println(waitForElement(resultsCarDetails).getText());
+        Assert.assertTrue("Only BMW cars should display but seems like something wrong",waitForElement(resultsCarDetails).getText().contains("BMW"));
     }
 }

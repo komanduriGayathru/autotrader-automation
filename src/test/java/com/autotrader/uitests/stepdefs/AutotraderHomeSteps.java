@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AutotraderHomeSteps {
 
@@ -17,9 +18,13 @@ public class AutotraderHomeSteps {
 
     @Before(value = "@web", order = 1)
     public void initWebDriver() throws Throwable {
+
+//        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
+//        driver = new FirefoxDriver();
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
         driver = new ChromeDriver();
     }
+
 
     @Before(value = "@autotrader", order = 10)
     public void initGooglePage() throws Throwable {
@@ -50,15 +55,15 @@ public class AutotraderHomeSteps {
     }
 
     @When("i perform advanced seach button for certified,convertible with year as {int} to {int}")
-    public void i_perform_advanced_seach_button_for_certified_convertible_with_year_as_to(Integer int1, Integer int2) {
+    public void i_perform_advanced_seach_button_for_certified_convertible_with_year_as_to(int startYear, int endYear) throws InterruptedException {
             advancedSearcPage = autotraderHomepage.clickOnAvancedSeach();
-            advancedSearcPage.searchForCar("BMW",2017,2020);
+            advancedSearcPage.searchForCar("BMW",startYear,endYear);
             advancedSearcPage.getCount();
             advancedSearcPage.validateSearchResults();
     }
 
     @Then("i should be able to see only BMW cars in the results page")
     public void i_should_be_able_to_see_only_BMW_cars_in_the_results_page() {
-        System.out.println("Hello");
+        advancedSearcPage.validateSearchResults();
     }
 }

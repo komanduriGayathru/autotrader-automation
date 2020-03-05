@@ -43,7 +43,7 @@ public class AutotraderHomepage extends BrowserActions {
     }
 
     public AdvancedSearcPage clickOnAvancedSeach(){
-        clickOnElement(advancedSearch);
+        javaScriptClick(advancedSearch);
         return new AdvancedSearcPage(getDriver());
     }
 }

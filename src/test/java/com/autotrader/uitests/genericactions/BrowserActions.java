@@ -2,6 +2,7 @@ package com.autotrader.uitests.genericactions;
 
 import com.autotrader.uitests.framework.AbstractPandaPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,5 +63,11 @@ public class BrowserActions extends AbstractPandaPage {
     }
     public int getElementCount(By by){
         return  driver.findElements(by).size();
+    }
+
+    public static void javaScriptClick(By by){
+        WebElement element = driver.findElement(by);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
     }
 }
