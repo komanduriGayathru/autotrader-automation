@@ -18,14 +18,6 @@ public class BrowserActions extends AbstractPandaPage {
         BrowserActions.driver = driver;
     }
 
-    public static void clickOnElement(WebDriver driver, By by){
-        waitForElement(driver,by).click();
-    }
-
-    public static void typeText(WebDriver driver, By by,String textToType){
-        waitForElement(driver,by).sendKeys(textToType);
-    }
-
     public static void selectCheckBox(By by){
         WebElement element = waitForElement(by);
         if(!element.isSelected()){
