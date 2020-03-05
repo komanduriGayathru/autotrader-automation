@@ -1,5 +1,6 @@
 package com.autotrader.uitests.stepdefs;
 
+import com.autotrader.uitests.framework.ReadProperties;
 import com.autotrader.uitests.pages.AdvancedSearcPage;
 import com.autotrader.uitests.pages.AutotraderHomepage;
 import io.cucumber.java.Before;
@@ -18,13 +19,17 @@ public class AutotraderHomeSteps {
 
     @Before(value = "@web", order = 1)
     public void initWebDriver() throws Throwable {
+        ReadProperties readProperties = new ReadProperties();
 
-//        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
-//        driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
-        driver = new ChromeDriver();
+        if(readProperties.getBrowser().equalsIgnoreCase("CHROME")){
+            System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
+            driver = new ChromeDriver();
+        }
+        else  if(readProperties.getBrowser().equalsIgnoreCase("FIREFOX")){
+                    System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
+        driver = new FirefoxDriver();
+        }
     }
-
 
     @Before(value = "@autotrader", order = 10)
     public void initGooglePage() throws Throwable {
