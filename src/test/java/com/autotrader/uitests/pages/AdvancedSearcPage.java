@@ -30,7 +30,7 @@ public class AdvancedSearcPage extends BrowserActions {
             clickOnElement(noThanksPopup);
         }
 
-        typeText(zipTxtBx,"55123");
+        typeText(zipTxtBx,"30004");
         selectCheckBox(certififiedChkBox);
         selectCheckBox(convertibleChkBox);
         selectDowpDown(startYearDrpDown,Integer.toString(startYear));
